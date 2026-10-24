@@ -1,0 +1,58 @@
+# Java
+java-app/target/
+*.class
+*.jar
+*.war
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.env
+
+# Database
+database/medsport.db
+database/medsport.db-wal
+database/medsport.db-shm
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.iws
+
+# Reports & exports
+*.pdf
+
+# Pids
+.pids
+
+# Runtime files
+mosquitto_data/
+app_startup.log
+sim_out.log
+sim_err.log
+
+# Temp / debug scripts in root
+*.ps1
+validate_db*.py
+check_*.py
+debug_*.py
+final_validation.py
+
+# Maven wrapper jar
+java-app/.mvn/wrapper/maven-wrapper.jar
+
+# Dependency reduced pom
+java-app/dependency-reduced-pom.xml

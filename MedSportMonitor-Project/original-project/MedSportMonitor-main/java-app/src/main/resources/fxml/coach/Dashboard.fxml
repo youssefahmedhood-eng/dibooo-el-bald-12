@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<ScrollPane fitToWidth="true" fitToHeight="false"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.medsport.controllers.coach.DashboardController"
+            styleClass="scroll-pane-dark">
+  <VBox spacing="20" style="-fx-padding:24; -fx-background-color:#0d1117;">
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="16">
+      <Label text="Team Dashboard" style="-fx-font-size:22px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Label fx:id="mqttStatusLabel" text="●" style="-fx-font-size:14px;-fx-text-fill:#f85149;"/>
+      <Label fx:id="lastUpdateLabel" text="No data" style="-fx-font-size:12px;-fx-text-fill:#8b949e;"/>
+    </HBox>
+
+    <!-- Session quick-start bar -->
+    <HBox styleClass="glass-card-sm" alignment="CENTER_LEFT" spacing="12" style="-fx-padding:12 16 12 16;">
+      <Label text="Session:" style="-fx-text-fill:#8b949e;-fx-font-size:13px;"/>
+      <Label fx:id="sessionStatusLabel" text="No active session"
+             style="-fx-text-fill:#e6edf3;-fx-font-size:13px;-fx-font-weight:bold;"/>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Button fx:id="startSessionBtn" text="Start Session" onAction="#handleStartSession"
+              styleClass="btn-primary" style="-fx-padding:6 18 6 18;"/>
+      <Button fx:id="stopSessionBtn" text="Stop" onAction="#handleStopSession"
+              styleClass="btn-danger" style="-fx-padding:6 18 6 18;" visible="false" managed="false"/>
+    </HBox>
+
+    <!-- Athlete grid -->
+    <Label text="Live Athletes" style="-fx-font-size:14px;-fx-font-weight:bold;-fx-text-fill:#8b949e;"/>
+    <FlowPane fx:id="athleteGrid" hgap="16" vgap="16"
+              style="-fx-background-color:transparent;"/>
+
+    <!-- Alert feed -->
+    <Label text="Active Alerts" style="-fx-font-size:14px;-fx-font-weight:bold;-fx-text-fill:#8b949e;"/>
+    <VBox fx:id="alertFeed" spacing="6"
+          style="-fx-background-color:rgba(22,27,34,0.60);-fx-background-radius:10;-fx-padding:12;"/>
+
+  </VBox>
+</ScrollPane>

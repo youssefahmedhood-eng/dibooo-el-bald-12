@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<StackPane xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.medsport.controllers.shared.JoinTeamController"
+           prefWidth="1100" prefHeight="720"
+           styleClass="login-root">
+    <Pane styleClass="login-bg" maxWidth="Infinity" maxHeight="Infinity"/>
+    <VBox styleClass="login-card" spacing="0" alignment="TOP_CENTER"
+          maxWidth="420" maxHeight="440">
+        <VBox alignment="CENTER" spacing="6">
+            <VBox.margin><Insets bottom="28"/></VBox.margin>
+            <Label text="&#x1F91D;" style="-fx-font-size:40px;"/>
+            <Label text="Join a Team" styleClass="step-title"/>
+            <Label text="Enter the 6-character join code provided by your coach."
+                   styleClass="caption" wrapText="true" textAlignment="CENTER" maxWidth="300"/>
+        </VBox>
+        <TextField fx:id="joinCodeField" promptText="e.g. ATL001"
+                   styleClass="join-code-field" maxWidth="Infinity"
+                   style="-fx-font-size:28px; -fx-alignment:CENTER;">
+            <VBox.margin><Insets bottom="16"/></VBox.margin>
+        </TextField>
+        <Label fx:id="teamPreviewLabel" text="" styleClass="success-label"
+               visible="false" managed="false" maxWidth="Infinity">
+            <VBox.margin><Insets bottom="8"/></VBox.margin>
+        </Label>
+        <Label fx:id="errorLabel" styleClass="error-label" visible="false" managed="false"
+               maxWidth="Infinity">
+            <VBox.margin><Insets bottom="8"/></VBox.margin>
+        </Label>
+        <ProgressIndicator fx:id="spinner" visible="false" managed="false"
+                           maxWidth="28" maxHeight="28">
+            <VBox.margin><Insets bottom="8"/></VBox.margin>
+        </ProgressIndicator>
+        <Button fx:id="joinButton" text="Join Team" onAction="#handleJoin"
+                styleClass="btn-primary" maxWidth="Infinity"/>
+        <Button text="Back" onAction="#handleBack" styleClass="btn-ghost" maxWidth="Infinity">
+            <VBox.margin><Insets top="8"/></VBox.margin>
+        </Button>
+    </VBox>
+</StackPane>

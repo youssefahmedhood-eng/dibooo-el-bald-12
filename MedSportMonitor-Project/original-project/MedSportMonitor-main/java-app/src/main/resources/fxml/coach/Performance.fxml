@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<ScrollPane fitToWidth="true" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.medsport.controllers.coach.PerformanceController"
+            style="-fx-background-color:#0d1117;">
+  <VBox spacing="20" style="-fx-padding:24; -fx-background-color:#0d1117;">
+
+    <Label text="Performance Analysis" style="-fx-font-size:22px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+
+    <!-- Athlete selector -->
+    <HBox alignment="CENTER_LEFT" spacing="12">
+      <Label text="Athlete:" style="-fx-text-fill:#8b949e;-fx-font-size:13px;"/>
+      <ComboBox fx:id="athleteCombo" prefWidth="220"/>
+    </HBox>
+
+    <!-- Radar + stats side by side -->
+    <HBox spacing="32" alignment="TOP_LEFT">
+      <Canvas fx:id="radarCanvas" width="380" height="340"/>
+
+      <VBox spacing="12" VBox.vgrow="ALWAYS">
+        <!-- Stats grid -->
+        <VBox styleClass="glass-card" spacing="10" style="-fx-padding:16;">
+          <Label text="Season Stats" style="-fx-font-size:13px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+          <GridPane hgap="20" vgap="8">
+            <Label text="Avg HR" GridPane.rowIndex="0" GridPane.columnIndex="0"
+                   style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+            <Label fx:id="avgHrLabel" text="—" GridPane.rowIndex="0" GridPane.columnIndex="1"
+                   style="-fx-text-fill:#e6edf3;-fx-font-size:13px;-fx-font-weight:bold;"/>
+            <Label text="Max HR" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                   style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+            <Label fx:id="maxHrLabel" text="—" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                   style="-fx-text-fill:#e6edf3;-fx-font-size:13px;-fx-font-weight:bold;"/>
+            <Label text="Avg SpO₂" GridPane.rowIndex="2" GridPane.columnIndex="0"
+                   style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+            <Label fx:id="avgSpo2Label" text="—" GridPane.rowIndex="2" GridPane.columnIndex="1"
+                   style="-fx-text-fill:#e6edf3;-fx-font-size:13px;-fx-font-weight:bold;"/>
+            <Label text="Total Dist" GridPane.rowIndex="3" GridPane.columnIndex="0"
+                   style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+            <Label fx:id="totalDistLabel" text="—" GridPane.rowIndex="3" GridPane.columnIndex="1"
+                   style="-fx-text-fill:#e6edf3;-fx-font-size:13px;-fx-font-weight:bold;"/>
+            <Label text="Training Load" GridPane.rowIndex="4" GridPane.columnIndex="0"
+                   style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+            <Label fx:id="trainingLoadLabel" text="—" GridPane.rowIndex="4" GridPane.columnIndex="1"
+                   style="-fx-text-fill:#e6edf3;-fx-font-size:13px;-fx-font-weight:bold;"/>
+          </GridPane>
+        </VBox>
+
+        <!-- Acute:Chronic ratio -->
+        <VBox styleClass="glass-card-sm" spacing="6" style="-fx-padding:16;">
+          <Label text="Acute:Chronic Ratio" style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+          <Label fx:id="acrLabel" text="—" style="-fx-text-fill:#e6edf3;-fx-font-size:15px;-fx-font-weight:bold;"/>
+        </VBox>
+      </VBox>
+    </HBox>
+
+  </VBox>
+</ScrollPane>

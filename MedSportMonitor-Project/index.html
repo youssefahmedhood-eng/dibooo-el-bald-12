@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <title>MedSport Monitor — لوحة المتابعة</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" aria-label="MedSport Monitor">
+        <span class="brand-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 21h8l4-10 7 20 5-13 3 3h5"/><circle cx="31" cy="18" r="2.2"/></svg></span>
+        <span class="brand-copy"><b>MedSport</b><small>MONITORING SYSTEM</small></span>
+      </a>
+      <div class="team-switch"><span class="team-avatar">ن</span><span><b>نادي النخبة الرياضي</b><small>الفريق الأول · 24 لاعب</small></span><span class="chevron">⌄</span></div>
+      <div class="nav-label">القائمة الرئيسية</div>
+      <nav class="main-nav" aria-label="القائمة الرئيسية">
+        <button class="nav-item active" data-page="dashboard"><span class="nav-icon">▦</span><span>نظرة عامة</span></button>
+        <button class="nav-item" data-page="players"><span class="nav-icon">♧</span><span>اللاعبون</span><span class="nav-count">24</span></button>
+        <button class="nav-item" data-page="sessions"><span class="nav-icon">◷</span><span>الجلسات التدريبية</span></button>
+        <button class="nav-item" data-page="analytics"><span class="nav-icon">⌁</span><span>تحليلات الأداء</span></button>
+        <button class="nav-item" data-page="medical"><span class="nav-icon">✚</span><span>المتابعة الطبية</span><span class="nav-dot"></span></button>
+      </nav>
+      <div class="nav-label nav-label-spaced">إدارة الفريق</div>
+      <nav class="main-nav">
+        <button class="nav-item" data-page="alerts"><span class="nav-icon">♢</span><span>التنبيهات</span><span class="nav-count warning-count">3</span></button>
+        <button class="nav-item" data-page="reports"><span class="nav-icon">▤</span><span>التقارير</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card"><span class="help-icon">✦</span><b>جاهز لجلسة جديدة؟</b><p>ابدأ متابعة الفريق لحظيًا.</p><button id="sideStart">＋ بدء جلسة</button></div>
+        <button class="profile-row"><span class="profile-avatar">م</span><span class="profile-copy"><b>مروان عادل</b><small>المدرب الرئيسي</small></span><span class="more">•••</span></button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuToggle" aria-label="فتح القائمة">☰</button>
+        <div class="breadcrumbs"><span>الرئيسية</span><span class="crumb-sep">/</span><b id="crumbCurrent">نظرة عامة</b></div>
+        <div class="top-actions">
+          <span class="connection"><i></i><span>النظام يعمل</span></span>
+          <button class="icon-button" id="searchOpen" aria-label="بحث">⌕</button>
+          <button class="icon-button notification-button" id="notificationBtn" aria-label="التنبيهات">♧<i></i></button>
+          <span class="top-divider"></span>
+          <button class="today-pill" id="dateButton">◷ <span>السبت، ٢٤ أكتوبر ٢٠٢٦</span><span class="chevron">⌄</span></button>
+        </div>
+      </header>
+
+      <section class="page-content">
+        <div class="page-heading">
+          <div><div class="eyebrow"><span class="eyebrow-line"></span> مركز الأداء الرياضي</div><h1 id="pageTitle">صباح الخير يا كابتن مروان <span class="wave">✦</span></h1><p id="pageSubtitle">إليك ملخص حالة الفريق اليوم. كل شيء تحت السيطرة.</p></div>
+          <div class="heading-actions"><button class="btn btn-quiet" id="exportBtn"><span>⇩</span> تصدير التقرير</button><button class="btn btn-primary" id="startSession"><span>＋</span> بدء جلسة تدريب</button></div>
+        </div>
+
+        <div class="live-banner"><div class="live-pulse"><span></span></div><div class="live-copy"><b>المراقبة المباشرة مفعّلة</b><span>تصل البيانات من <strong>١٨ جهازًا</strong> · آخر تحديث منذ ثوانٍ</span></div><div class="live-meta"><span class="mini-bars"><i></i><i></i><i></i><i></i><i></i></span><span>اتصال مستقر</span><b>98.6%</b></div><button class="banner-arrow" aria-label="تفاصيل">←</button></div>
+
+        <div class="section-title"><div><h2>ملخص اليوم</h2><p>مؤشرات الفريق في لمحة سريعة</p></div><button class="text-button" data-goto="analytics">عرض التحليلات كاملة <span>←</span></button></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon athletes-icon">♧</span><span class="trend positive">↑ 8.2%</span></div><div class="stat-value">24 <span>لاعب</span></div><div class="stat-label">إجمالي اللاعبين النشطين</div><div class="stat-foot"><span class="tiny-avatars"><i>م</i><i>س</i><i>ع</i><i>+21</i></span><span>18 متصل الآن</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon heart-icon">♡</span><span class="trend positive">طبيعي</span></div><div class="stat-value">72 <small>نبضة/د</small></div><div class="stat-label">متوسط نبض الفريق</div><div class="stat-foot"><span class="sparkline" id="spark1"></span><span>أقل من أمس بـ 4%</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon session-icon">◷</span><span class="trend neutral">هذا الأسبوع</span></div><div class="stat-value">12 <span>جلسة</span></div><div class="stat-label">الجلسات التدريبية المكتملة</div><div class="stat-foot"><div class="progress-track"><i style="width:72%"></i></div><span>72% من الخطة</span></div></article>
+          <article class="stat-card attention-card"><div class="stat-top"><span class="stat-icon alert-icon">!</span><span class="trend caution">تحتاج متابعة</span></div><div class="stat-value">03 <span>تنبيهات</span></div><div class="stat-label">تنبيهات صحية نشطة</div><div class="stat-foot"><span class="status-dot amber"></span><span>1 مرتفع · 2 متوسط</span><button class="tiny-link" data-goto="alerts">راجع الآن ←</button></div></article>
+        </div>
+
+        <div class="dashboard-grid">
+          <section class="panel chart-panel">
+            <div class="panel-heading"><div><h3>معدل نبض القلب</h3><p>متوسط نبض اللاعبين خلال جلسة اليوم</p></div><div class="chart-actions"><div class="legend"><i></i> متوسط الفريق</div><select id="chartRange" aria-label="الفترة"><option value="day">آخر ٦ ساعات</option><option value="week">آخر ٧ أيام</option></select><button class="dots-button" aria-label="خيارات">•••</button></div></div>
+            <div class="chart-summary"><b id="chartBpm">72 <small>نبضة/د</small></b><span class="chart-delta">↑ 2.4% <small>مقارنة بالفترة السابقة</small></span></div>
+            <div class="chart-wrap"><div class="y-labels"><span>١٨٠</span><span>١٤٠</span><span>١٠٠</span><span>٦٠</span></div><canvas id="heartChart" aria-label="رسم بياني لمعدل نبض القلب"></canvas></div>
+            <div class="chart-xlabels"><span>08:00</span><span>09:00</span><span>10:00</span><span>11:00</span><span>12:00</span><span>13:00</span><span>14:00</span></div>
+          </section>
+          <section class="panel zones-panel"><div class="panel-heading"><div><h3>توزيع مناطق النبض</h3><p>وقت التدريب حسب شدة الجهد</p></div><button class="dots-button" aria-label="خيارات">•••</button></div><div class="donut-holder"><div class="donut" id="zoneDonut"><div class="donut-center"><b>١٢:٤٨</b><span>إجمالي الوقت</span></div></div></div><div class="zone-list"><div><i class="zone-color z1"></i><span>منطقة 1 <small>استشفاء</small></span><b>18%</b><em>02:18</em></div><div><i class="zone-color z2"></i><span>منطقة 2 <small>هوائي</small></span><b>32%</b><em>04:06</em></div><div><i class="zone-color z3"></i><span>منطقة 3 <small>تحمل</small></span><b>27%</b><em>03:28</em></div><div><i class="zone-color z4"></i><span>منطقة 4 <small>عتبة</small></span><b>16%</b><em>02:03</em></div><div><i class="zone-color z5"></i><span>منطقة 5 <small>قصوى</small></span><b>7%</b><em>00:53</em></div></div></section>
+        </div>
+
+        <div class="section-title players-title"><div><h2>حالة اللاعبين</h2><p>متابعة فورية لمؤشرات اللاعبين المتصلين</p></div><div class="player-tools"><label class="search-box"><span>⌕</span><input id="playerSearch" placeholder="ابحث عن لاعب..." type="search"></label><select id="statusFilter"><option value="all">كل الحالات</option><option value="normal">طبيعي</option><option value="watch">تحت المراقبة</option><option value="alert">تنبيه</option></select><button class="text-button" data-goto="players">عرض كل اللاعبين <span>←</span></button></div></div>
+        <section class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>اللاعب</th><th>الحالة</th><th>نبض القلب</th><th>SpO₂</th><th>منطقة النبض</th><th>الحمل التدريبي</th><th>آخر نشاط</th><th></th></tr></thead><tbody id="playerRows"></tbody></table></div><div class="table-footer"><span>عرض <b id="showingCount">6</b> من 24 لاعب</span><button class="pagination-btn" disabled>السابق</button><button class="pagination-btn current">1</button><button class="pagination-btn">2</button><button class="pagination-btn">3</button><button class="pagination-btn">التالي ←</button></div></section>
+        <footer class="footer"><span>© 2026 MedSport Monitor</span><span><i class="footer-dot"></i> البيانات التجريبية مفعّلة <b>·</b> النسخة 1.0.0</span><a href="README_AR.txt">مساعدة التشغيل</a></footer>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="modalClose" aria-label="إغلاق">×</button><div class="modal-icon">◷</div><h2 id="modalTitle">بدء جلسة تدريب جديدة</h2><p>أدخل تفاصيل الجلسة. ستُحفظ في وضع العرض التجريبي على هذا الجهاز.</p><label>اسم الجلسة<input id="sessionName" value="تدريب لياقة بدنية"></label><label>نوع التدريب<select id="sessionType"><option>تحمل ولياقة</option><option>سرعة</option><option>استشفاء</option><option>قوة</option></select></label><div class="modal-actions"><button class="btn btn-quiet" id="modalCancel">إلغاء</button><button class="btn btn-primary" id="modalConfirm">بدء الجلسة</button></div></div></div>
+  <script src="app.js"></script>
+</body>
+</html>

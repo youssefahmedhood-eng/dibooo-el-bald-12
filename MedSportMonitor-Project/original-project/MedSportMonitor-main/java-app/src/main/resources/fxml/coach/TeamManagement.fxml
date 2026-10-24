@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<ScrollPane fitToWidth="true" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.medsport.controllers.coach.TeamManagementController"
+            style="-fx-background-color:#0d1117;">
+  <VBox spacing="20" style="-fx-padding:24; -fx-background-color:#0d1117;">
+
+    <Label text="Team Management" style="-fx-font-size:22px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+
+    <!-- Athlete table -->
+    <VBox styleClass="glass-card" spacing="10" style="-fx-padding:16;">
+      <HBox alignment="CENTER_LEFT" spacing="12">
+        <Label text="Athletes" style="-fx-font-size:14px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Remove Selected" onAction="#handleRemoveMember"
+                styleClass="btn-danger" style="-fx-padding:6 14 6 14;"/>
+      </HBox>
+      <TableView fx:id="athleteTable" prefHeight="280">
+        <columns>
+          <TableColumn fx:id="colName"  text="Name"    prefWidth="180"/>
+          <TableColumn fx:id="colSport" text="Sport"   prefWidth="130"/>
+          <TableColumn fx:id="colAge"   text="Age"     prefWidth="80"/>
+          <TableColumn fx:id="colHrMax" text="HR Max"  prefWidth="100"/>
+        </columns>
+      </TableView>
+    </VBox>
+
+    <!-- Threshold sliders -->
+    <VBox styleClass="glass-card" spacing="16" style="-fx-padding:20;">
+      <Label text="Alert Thresholds" style="-fx-font-size:14px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+
+      <VBox spacing="8">
+        <HBox>
+          <Label text="HR Alert Threshold" style="-fx-text-fill:#8b949e;-fx-font-size:13px;"/>
+          <Region HBox.hgrow="ALWAYS"/>
+          <Label fx:id="hrThresholdLabel" text="85%" style="-fx-text-fill:#e6edf3;-fx-font-size:13px;"/>
+        </HBox>
+        <Slider fx:id="hrThresholdSlider" min="70" max="100" value="85" blockIncrement="1"/>
+      </VBox>
+
+      <VBox spacing="8">
+        <HBox>
+          <Label text="SpO₂ Alert Threshold" style="-fx-text-fill:#8b949e;-fx-font-size:13px;"/>
+          <Region HBox.hgrow="ALWAYS"/>
+          <Label fx:id="spo2ThresholdLabel" text="94%" style="-fx-text-fill:#e6edf3;-fx-font-size:13px;"/>
+        </HBox>
+        <Slider fx:id="spo2ThresholdSlider" min="85" max="99" value="94" blockIncrement="1"/>
+      </VBox>
+
+      <VBox spacing="8">
+        <HBox>
+          <Label text="Weekly Load Threshold (AU)" style="-fx-text-fill:#8b949e;-fx-font-size:13px;"/>
+          <Region HBox.hgrow="ALWAYS"/>
+          <Label fx:id="loadThresholdLabel" text="2000" style="-fx-text-fill:#e6edf3;-fx-font-size:13px;"/>
+        </HBox>
+        <Slider fx:id="loadThresholdSlider" min="500" max="4000" value="2000" blockIncrement="50"/>
+      </VBox>
+
+      <Button text="Save Thresholds" onAction="#handleSaveThresholds"
+              styleClass="btn-primary" style="-fx-padding:8 24 8 24;"/>
+    </VBox>
+
+  </VBox>
+</ScrollPane>

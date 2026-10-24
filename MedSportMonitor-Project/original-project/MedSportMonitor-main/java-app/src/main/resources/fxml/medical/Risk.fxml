@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<ScrollPane fitToWidth="true" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.medsport.controllers.medical.RiskController"
+            style="-fx-background-color:#0d1117;">
+  <VBox spacing="20" style="-fx-padding:24; -fx-background-color:#0d1117;">
+
+    <Label text="Risk Analysis" style="-fx-font-size:22px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+
+    <!-- Team risk summary -->
+    <HBox spacing="24" alignment="CENTER_LEFT">
+      <VBox styleClass="glass-card-sm" alignment="CENTER" spacing="6" style="-fx-padding:16 28 16 28;">
+        <Label text="Team Risk" style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+        <Label fx:id="teamRiskLabel" text="—" style="-fx-font-size:20px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+      </VBox>
+      <VBox styleClass="glass-card-sm" alignment="CENTER" spacing="6" style="-fx-padding:16 24 16 24;">
+        <Label text="High Risk" style="-fx-text-fill:#f85149;-fx-font-size:12px;"/>
+        <Label fx:id="highRiskCountLabel" text="0" style="-fx-font-size:24px;-fx-font-weight:bold;-fx-text-fill:#f85149;"/>
+      </VBox>
+      <VBox styleClass="glass-card-sm" alignment="CENTER" spacing="6" style="-fx-padding:16 24 16 24;">
+        <Label text="Moderate" style="-fx-text-fill:#d29922;-fx-font-size:12px;"/>
+        <Label fx:id="medRiskCountLabel" text="0" style="-fx-font-size:24px;-fx-font-weight:bold;-fx-text-fill:#d29922;"/>
+      </VBox>
+      <VBox styleClass="glass-card-sm" alignment="CENTER" spacing="6" style="-fx-padding:16 24 16 24;">
+        <Label text="Low Risk" style="-fx-text-fill:#3fb950;-fx-font-size:12px;"/>
+        <Label fx:id="lowRiskCountLabel" text="0" style="-fx-font-size:24px;-fx-font-weight:bold;-fx-text-fill:#3fb950;"/>
+      </VBox>
+    </HBox>
+
+    <!-- Side-by-side: radar + athlete bars -->
+    <HBox spacing="32" alignment="TOP_LEFT">
+      <VBox spacing="8">
+        <Label text="Risk Profile Radar" style="-fx-font-size:13px;-fx-font-weight:bold;-fx-text-fill:#8b949e;"/>
+        <Canvas fx:id="riskRadarCanvas" width="320" height="300"/>
+      </VBox>
+
+      <VBox spacing="8" VBox.vgrow="ALWAYS">
+        <Label text="Per-Athlete Risk" style="-fx-font-size:13px;-fx-font-weight:bold;-fx-text-fill:#8b949e;"/>
+        <VBox fx:id="riskCards" spacing="6"/>
+      </VBox>
+    </HBox>
+
+  </VBox>
+</ScrollPane>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.geometry.*?>
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.medsport.controllers.athlete.DashboardController"
+            fitToWidth="true" hbarPolicy="NEVER"
+            style="-fx-background:transparent; -fx-background-color:transparent;">
+  <VBox spacing="20" style="-fx-padding:24 32;">
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="16">
+      <Label text="Dashboard" styleClass="page-title" style="-fx-padding:0;"/>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Label fx:id="mqttStatusLabel" text="LIVE" styleClass="badge-ok"/>
+      <Label fx:id="lastUpdateLabel" text="" styleClass="caption"/>
+    </HBox>
+
+    <!-- Row 1: vital cards -->
+    <HBox spacing="16">
+
+      <!-- HR card -->
+      <VBox styleClass="glass-card" HBox.hgrow="ALWAYS" spacing="8">
+        <HBox alignment="CENTER_LEFT" spacing="12">
+          <Pane fx:id="hrPulseDot" styleClass="hr-pulse-dot"
+                style="-fx-background-radius:50%; -fx-pref-width:14px; -fx-pref-height:14px; -fx-background-color:-theme-accent;"/>
+          <Label text="Heart Rate" styleClass="section-title"/>
+        </HBox>
+        <HBox alignment="BASELINE_LEFT" spacing="6">
+          <Label fx:id="hrValueLabel" text="—" styleClass="value-large"/>
+          <Label text="bpm" styleClass="value-unit"/>
+        </HBox>
+        <Label fx:id="hrZoneLabel" text="" styleClass="subtitle"/>
+        <Label fx:id="hrTrendLabel" text="" styleClass="caption"/>
+      </VBox>
+
+      <!-- SpO2 card -->
+      <VBox styleClass="glass-card" HBox.hgrow="ALWAYS" spacing="8">
+        <Label text="SpO2" styleClass="section-title"/>
+        <HBox alignment="BASELINE_LEFT" spacing="6">
+          <Label fx:id="spo2ValueLabel" text="—" styleClass="value-large"/>
+        </HBox>
+        <Label fx:id="spo2StatusLabel" text="—" styleClass="subtitle"/>
+      </VBox>
+
+      <!-- Speed card -->
+      <VBox styleClass="glass-card" HBox.hgrow="ALWAYS" spacing="8">
+        <Label text="Speed" styleClass="section-title"/>
+        <HBox alignment="BASELINE_LEFT" spacing="6">
+          <Label fx:id="speedValueLabel" text="— km/h" styleClass="value-large" style="-fx-font-size:28px;"/>
+        </HBox>
+        <HBox alignment="BASELINE_LEFT" spacing="6">
+          <Label text="Cadence:" styleClass="caption"/>
+          <Label fx:id="cadenceValueLabel" text="—" styleClass="caption" style="-fx-text-fill:#e6edf3;"/>
+        </HBox>
+      </VBox>
+    </HBox>
+
+    <!-- Row 2: Zone distribution + GPS map -->
+    <HBox spacing="16">
+
+      <!-- Zone bars -->
+      <VBox styleClass="card" spacing="12" HBox.hgrow="ALWAYS">
+        <Label text="HR Zone Distribution" styleClass="section-title"/>
+        <VBox spacing="8">
+          <!-- Zone 1 -->
+          <HBox alignment="CENTER_LEFT" spacing="8">
+            <Label text="Z1 Recovery" styleClass="zone1" minWidth="100"/>
+            <ProgressBar fx:id="zone1Bar" progress="0" HBox.hgrow="ALWAYS" styleClass="progress-bar"/>
+            <Label fx:id="zone1Pct" text="0%" styleClass="caption" minWidth="36"/>
+          </HBox>
+          <!-- Zone 2 -->
+          <HBox alignment="CENTER_LEFT" spacing="8">
+            <Label text="Z2 Aerobic" styleClass="zone2" minWidth="100"/>
+            <ProgressBar fx:id="zone2Bar" progress="0" HBox.hgrow="ALWAYS" styleClass="progress-bar"/>
+            <Label fx:id="zone2Pct" text="0%" styleClass="caption" minWidth="36"/>
+          </HBox>
+          <!-- Zone 3 -->
+          <HBox alignment="CENTER_LEFT" spacing="8">
+            <Label text="Z3 Tempo" styleClass="zone3" minWidth="100"/>
+            <ProgressBar fx:id="zone3Bar" progress="0" HBox.hgrow="ALWAYS" styleClass="progress-bar"/>
+            <Label fx:id="zone3Pct" text="0%" styleClass="caption" minWidth="36"/>
+          </HBox>
+          <!-- Zone 4 -->
+          <HBox alignment="CENTER_LEFT" spacing="8">
+            <Label text="Z4 Threshold" styleClass="zone4" minWidth="100"/>
+            <ProgressBar fx:id="zone4Bar" progress="0" HBox.hgrow="ALWAYS" styleClass="progress-bar"/>
+            <Label fx:id="zone4Pct" text="0%" styleClass="caption" minWidth="36"/>
+          </HBox>
+          <!-- Zone 5 -->
+          <HBox alignment="CENTER_LEFT" spacing="8">
+            <Label text="Z5 VO2max" styleClass="zone5" minWidth="100"/>
+            <ProgressBar fx:id="zone5Bar" progress="0" HBox.hgrow="ALWAYS" styleClass="progress-bar"/>
+            <Label fx:id="zone5Pct" text="0%" styleClass="caption" minWidth="36"/>
+          </HBox>
+        </VBox>
+      </VBox>
+
+      <!-- GPS mini-map -->
+      <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS">
+        <Label text="GPS Track" styleClass="section-title"/>
+        <Canvas fx:id="gpsCanvas" width="340" height="220" styleClass="map-pane"/>
+        <Label text="Live GPS route — updated each reading" styleClass="caption"/>
+      </VBox>
+    </HBox>
+
+    <!-- Row 3: Active session card -->
+    <VBox spacing="8">
+      <Label text="Current Session" styleClass="section-title"/>
+
+      <!-- No session pane -->
+      <VBox fx:id="noSessionPane" styleClass="card" alignment="CENTER" spacing="8"
+            style="-fx-padding:32;">
+        <Label text="No active session" styleClass="subtitle"/>
+        <Label text="Your coach will start a session for the team." styleClass="caption"/>
+      </VBox>
+
+      <!-- Active session pane -->
+      <VBox fx:id="activeSessionPane" styleClass="card" spacing="12"
+            visible="false" managed="false">
+        <HBox alignment="CENTER_LEFT" spacing="10">
+          <Pane fx:id="sessionLiveDot" style="-fx-background-color:#3fb950; -fx-background-radius:50%; -fx-pref-width:10px; -fx-pref-height:10px;"/>
+          <Label text="LIVE" style="-fx-text-fill:#3fb950; -fx-font-weight:bold; -fx-font-size:12px;"/>
+          <Label fx:id="sessionTypeLabel" text="Training" styleClass="section-title" style="-fx-padding:0 0 0 8;"/>
+          <Region HBox.hgrow="ALWAYS"/>
+          <Label fx:id="sessionDurationLabel" text="00:00" styleClass="value-unit"
+                 style="-fx-font-size:20px; -fx-text-fill:#e6edf3;"/>
+        </HBox>
+        <HBox spacing="32">
+          <VBox spacing="2">
+            <Label text="Target Zone" styleClass="caption"/>
+            <Label fx:id="targetZoneLabel" text="Z2–Z4" styleClass="subtitle" style="-fx-text-fill:#e6edf3;"/>
+          </VBox>
+          <VBox spacing="2">
+            <Label text="Status" styleClass="caption"/>
+            <Label fx:id="sessionStatusLabel" text="Active" styleClass="badge-ok"/>
+          </VBox>
+        </HBox>
+      </VBox>
+    </VBox>
+
+  </VBox>
+</ScrollPane>

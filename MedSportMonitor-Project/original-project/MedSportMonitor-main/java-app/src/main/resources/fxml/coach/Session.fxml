@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.medsport.controllers.coach.SessionController"
+            style="-fx-background-color:#0d1117; -fx-padding:24;">
+
+  <!-- Top: Controls -->
+  <top>
+    <VBox spacing="14">
+      <Label text="Session Control" style="-fx-font-size:22px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+      <HBox styleClass="glass-card-sm" spacing="16" alignment="CENTER_LEFT" style="-fx-padding:14 20 14 20;">
+        <VBox spacing="4">
+          <Label text="Exercise Type" style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+          <ComboBox fx:id="exerciseTypeCombo" prefWidth="180"/>
+        </VBox>
+        <VBox spacing="4">
+          <Label text="Zone Range" style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+          <HBox spacing="8" alignment="CENTER_LEFT">
+            <Label text="Min" style="-fx-text-fill:#8b949e;"/>
+            <Slider fx:id="zoneMinSlider" min="1" max="5" value="2" blockIncrement="1"
+                    snapToTicks="true" prefWidth="100"/>
+            <Label fx:id="zoneMinLabel" text="2" style="-fx-text-fill:#e6edf3;"/>
+            <Label text="Max" style="-fx-text-fill:#8b949e;"/>
+            <Slider fx:id="zoneMaxSlider" min="1" max="5" value="4" blockIncrement="1"
+                    snapToTicks="true" prefWidth="100"/>
+            <Label fx:id="zoneMaxLabel" text="4" style="-fx-text-fill:#e6edf3;"/>
+          </HBox>
+        </VBox>
+        <VBox spacing="4">
+          <Label text="Global Intensity" style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+          <HBox spacing="8" alignment="CENTER_LEFT">
+            <Slider fx:id="globalIntensitySlider" min="0" max="1" value="0.6" prefWidth="120"/>
+            <Label fx:id="globalIntensityLabel" text="60%"
+                   style="-fx-text-fill:#e6edf3;-fx-font-size:13px;"/>
+          </HBox>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <VBox spacing="6" alignment="CENTER">
+          <Label fx:id="sessionClockLabel" text="00:00:00"
+                 style="-fx-font-size:22px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+          <HBox spacing="8">
+            <Button fx:id="startBtn" text="Start Session" onAction="#handleStart"
+                    styleClass="btn-primary" style="-fx-padding:8 20 8 20;"/>
+            <Button fx:id="stopBtn" text="Stop" onAction="#handleStop"
+                    styleClass="btn-danger" style="-fx-padding:8 20 8 20;"
+                    visible="false" managed="false"/>
+          </HBox>
+        </VBox>
+      </HBox>
+    </VBox>
+  </top>
+
+  <!-- Center: Live athlete rows -->
+  <center>
+    <ScrollPane fitToWidth="true" style="-fx-background-color:transparent;" VBox.vgrow="ALWAYS">
+      <VBox spacing="0">
+        <!-- Column header -->
+        <HBox style="-fx-padding:10 16 10 16;-fx-border-color:transparent transparent #21262d transparent;-fx-border-width:1;">
+          <Label text="Athlete" style="-fx-text-fill:#8b949e;-fx-font-size:12px;" minWidth="140"/>
+          <Label text="HR (bpm)" style="-fx-text-fill:#8b949e;-fx-font-size:12px;" minWidth="90"/>
+          <Label text="SpO₂ (%)" style="-fx-text-fill:#8b949e;-fx-font-size:12px;" minWidth="90"/>
+          <Label text="Zone" style="-fx-text-fill:#8b949e;-fx-font-size:12px;" minWidth="60"/>
+          <Label text="Intensity" style="-fx-text-fill:#8b949e;-fx-font-size:12px;" minWidth="160"/>
+        </HBox>
+        <VBox fx:id="athleteRows" spacing="2"/>
+      </VBox>
+    </ScrollPane>
+  </center>
+
+</BorderPane>

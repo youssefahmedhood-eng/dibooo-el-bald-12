@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<SplitPane xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.medsport.controllers.athlete.SessionsController"
+           orientation="HORIZONTAL" dividerPositions="0.65"
+           style="-fx-background-color:#0d1117; -fx-padding:24 32;">
+  <!-- Left: table -->
+  <VBox spacing="16">
+    <HBox alignment="CENTER_LEFT" spacing="12">
+      <Label text="Training Sessions" styleClass="page-title" style="-fx-padding:0;"/>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Button text="Refresh" onAction="#handleRefresh" styleClass="btn-secondary"/>
+    </HBox>
+    <Label fx:id="emptyLabel" text="No sessions recorded yet." styleClass="caption"
+           visible="false" managed="false"/>
+    <TableView fx:id="sessionsTable" VBox.vgrow="ALWAYS" styleClass="table-view">
+      <columns>
+        <TableColumn fx:id="colDate"     text="Date / Time"  prefWidth="180"/>
+        <TableColumn fx:id="colType"     text="Type"         prefWidth="120"/>
+        <TableColumn fx:id="colDuration" text="Duration"     prefWidth="100"/>
+        <TableColumn fx:id="colStatus"   text="Status"       prefWidth="90"/>
+      </columns>
+    </TableView>
+  </VBox>
+  <!-- Right: detail -->
+  <VBox fx:id="detailPane" spacing="16" style="-fx-padding:0 0 0 16;">
+    <Label text="Session Detail" styleClass="section-title"/>
+    <VBox styleClass="card" spacing="12">
+      <HBox spacing="8"><Label text="Date:"     styleClass="caption" minWidth="80"/><Label fx:id="detailDate"     text="—" styleClass="subtitle" style="-fx-text-fill:#e6edf3;"/></HBox>
+      <HBox spacing="8"><Label text="Type:"     styleClass="caption" minWidth="80"/><Label fx:id="detailType"     text="—" styleClass="subtitle" style="-fx-text-fill:#e6edf3;"/></HBox>
+      <HBox spacing="8"><Label text="Duration:" styleClass="caption" minWidth="80"/><Label fx:id="detailDuration" text="—" styleClass="subtitle" style="-fx-text-fill:#e6edf3;"/></HBox>
+      <HBox spacing="8"><Label text="Zones:"    styleClass="caption" minWidth="80"/><Label fx:id="detailZones"    text="—" styleClass="subtitle" style="-fx-text-fill:#e6edf3;"/></HBox>
+      <Separator/>
+      <Label text="Notes" styleClass="caption"/>
+      <Label fx:id="detailNotes" text="" styleClass="subtitle" wrapText="true"
+             style="-fx-text-fill:#8b949e;"/>
+    </VBox>
+  </VBox>
+</SplitPane>

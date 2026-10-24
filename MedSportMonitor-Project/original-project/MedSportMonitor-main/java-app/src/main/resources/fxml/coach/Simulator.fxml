@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<ScrollPane fitToWidth="true" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.medsport.controllers.coach.SimulatorController"
+            style="-fx-background-color:#0d1117;">
+  <VBox spacing="20" style="-fx-padding:24; -fx-background-color:#0d1117;">
+
+    <Label text="Simulator Control" style="-fx-font-size:22px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+
+    <!-- MQTT Connection panel -->
+    <HBox styleClass="glass-card-sm" alignment="CENTER_LEFT" spacing="16" style="-fx-padding:14 20 14 20;">
+      <VBox spacing="4">
+        <Label text="MQTT Broker" style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+        <Label fx:id="brokerLabel" text="localhost:1883"
+               style="-fx-text-fill:#e6edf3;-fx-font-size:13px;"/>
+      </VBox>
+      <VBox spacing="4">
+        <Label text="Status" style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+        <Label fx:id="mqttStatusLabel" text="DISCONNECTED"
+               style="-fx-text-fill:#f85149;-fx-font-weight:bold;-fx-font-size:13px;"/>
+      </VBox>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Button fx:id="connectBtn" text="Connect" onAction="#handleConnect"
+              styleClass="btn-primary" style="-fx-padding:6 18 6 18;"/>
+      <Button fx:id="disconnectBtn" text="Disconnect" onAction="#handleDisconnect"
+              styleClass="btn-secondary" style="-fx-padding:6 18 6 18;" disable="true"/>
+    </HBox>
+
+    <!-- Global controls -->
+    <HBox styleClass="glass-card-sm" spacing="24" alignment="CENTER_LEFT" style="-fx-padding:14 20 14 20;">
+      <VBox spacing="6">
+        <Label text="Global Intensity" style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+        <HBox spacing="8" alignment="CENTER_LEFT">
+          <Slider fx:id="globalIntensitySlider" prefWidth="180"/>
+          <Label fx:id="globalIntensityLabel" text="65%"
+                 style="-fx-text-fill:#e6edf3;-fx-font-size:13px;"/>
+        </HBox>
+      </VBox>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Button fx:id="pauseAllBtn" text="Pause All" onAction="#handlePauseAll"
+              styleClass="btn-secondary" style="-fx-padding:6 18 6 18;"/>
+      <Button fx:id="resumeAllBtn" text="Resume All" onAction="#handleResumeAll"
+              styleClass="btn-primary" style="-fx-padding:6 18 6 18;" disable="true"/>
+    </HBox>
+
+    <!-- Per-athlete sliders -->
+    <Label text="Per-Athlete Intensity" style="-fx-font-size:14px;-fx-font-weight:bold;-fx-text-fill:#8b949e;"/>
+    <VBox fx:id="athleteSliders" spacing="6"/>
+
+    <!-- Stats row -->
+    <HBox spacing="16">
+      <VBox styleClass="glass-card-sm" alignment="CENTER" spacing="4"
+            style="-fx-padding:12 20 12 20; -fx-pref-width:120;">
+        <Label text="HR msgs" style="-fx-text-fill:#8b949e;-fx-font-size:11px;"/>
+        <Label fx:id="hrCountLabel" text="0" style="-fx-text-fill:#f85149;-fx-font-size:20px;-fx-font-weight:bold;"/>
+      </VBox>
+      <VBox styleClass="glass-card-sm" alignment="CENTER" spacing="4"
+            style="-fx-padding:12 20 12 20; -fx-pref-width:120;">
+        <Label text="SpO₂ msgs" style="-fx-text-fill:#8b949e;-fx-font-size:11px;"/>
+        <Label fx:id="spo2CountLabel" text="0" style="-fx-text-fill:#0A84FF;-fx-font-size:20px;-fx-font-weight:bold;"/>
+      </VBox>
+      <VBox styleClass="glass-card-sm" alignment="CENTER" spacing="4"
+            style="-fx-padding:12 20 12 20; -fx-pref-width:120;">
+        <Label text="GPS msgs" style="-fx-text-fill:#8b949e;-fx-font-size:11px;"/>
+        <Label fx:id="gpsCountLabel" text="0" style="-fx-text-fill:#00C853;-fx-font-size:20px;-fx-font-weight:bold;"/>
+      </VBox>
+      <VBox styleClass="glass-card-sm" alignment="CENTER" spacing="4"
+            style="-fx-padding:12 20 12 20; -fx-pref-width:120;">
+        <Label text="Total" style="-fx-text-fill:#8b949e;-fx-font-size:11px;"/>
+        <Label fx:id="totalCountLabel" text="0" style="-fx-text-fill:#e6edf3;-fx-font-size:20px;-fx-font-weight:bold;"/>
+      </VBox>
+    </HBox>
+
+    <!-- MQTT log -->
+    <HBox alignment="CENTER_LEFT" spacing="12">
+      <Label text="MQTT Log" style="-fx-font-size:14px;-fx-font-weight:bold;-fx-text-fill:#8b949e;"/>
+      <Label fx:id="msgCountLabel" text="0 msgs"
+             style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Button text="Clear" onAction="#handleClearLog"
+              styleClass="btn-ghost" style="-fx-padding:4 12 4 12;"/>
+    </HBox>
+    <TextArea fx:id="mqttLogArea" editable="false" prefHeight="220"
+              style="-fx-font-family:monospace;-fx-font-size:11px;-fx-background-color:#0d1117;
+                     -fx-text-fill:#8b949e;-fx-border-color:#21262d;-fx-border-radius:8;
+                     -fx-background-radius:8;"/>
+
+  </VBox>
+</ScrollPane>

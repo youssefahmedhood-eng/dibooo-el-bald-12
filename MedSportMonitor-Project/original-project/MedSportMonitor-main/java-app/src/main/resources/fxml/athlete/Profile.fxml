@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.medsport.controllers.athlete.ProfileController"
+            fitToWidth="true" hbarPolicy="NEVER"
+            style="-fx-background:transparent; -fx-background-color:transparent;">
+  <VBox spacing="20" style="-fx-padding:24 32;">
+    <Label text="My Profile" styleClass="page-title" style="-fx-padding:0;"/>
+
+    <HBox spacing="20" alignment="TOP_LEFT">
+
+      <!-- Left: info display -->
+      <VBox spacing="16" HBox.hgrow="ALWAYS">
+        <VBox styleClass="card" spacing="12">
+          <Label text="Personal Info" styleClass="section-title"/>
+          <HBox spacing="8"><Label text="Name:"   styleClass="caption" minWidth="100"/><Label fx:id="nameLabel"   text="—" style="-fx-text-fill:#e6edf3;"/></HBox>
+          <HBox spacing="8"><Label text="Email:"  styleClass="caption" minWidth="100"/><Label fx:id="emailLabel"  text="—" style="-fx-text-fill:#8b949e;"/></HBox>
+          <HBox spacing="8"><Label text="Role:"   styleClass="caption" minWidth="100"/><Label fx:id="roleLabel"   text="—" styleClass="badge-ok"/></HBox>
+          <HBox spacing="8"><Label text="Team:"   styleClass="caption" minWidth="100"/><Label fx:id="teamLabel"   text="—" style="-fx-text-fill:#e6edf3;"/></HBox>
+        </VBox>
+
+        <VBox styleClass="card" spacing="12">
+          <Label text="Athletic Profile" styleClass="section-title"/>
+          <HBox spacing="8"><Label text="Sport:"   styleClass="caption" minWidth="100"/><Label fx:id="sportLabel"  text="—" style="-fx-text-fill:#e6edf3;"/></HBox>
+          <HBox spacing="8"><Label text="Age:"     styleClass="caption" minWidth="100"/><Label fx:id="ageLabel"    text="—" style="-fx-text-fill:#e6edf3;"/></HBox>
+          <HBox spacing="8"><Label text="Height:"  styleClass="caption" minWidth="100"/><Label fx:id="heightLabel" text="—" style="-fx-text-fill:#e6edf3;"/></HBox>
+          <HBox spacing="8"><Label text="Weight:"  styleClass="caption" minWidth="100"/><Label fx:id="weightLabel" text="—" style="-fx-text-fill:#e6edf3;"/></HBox>
+          <HBox spacing="8"><Label text="HRmax:"   styleClass="caption" minWidth="100"/><Label fx:id="hrMaxLabel"  text="—" style="-fx-text-fill:-theme-accent;"/></HBox>
+          <HBox spacing="8"><Label text="BMI:"     styleClass="caption" minWidth="100"/><Label fx:id="bmiLabel"    text="—" style="-fx-text-fill:#e6edf3;"/></HBox>
+        </VBox>
+      </VBox>
+
+      <!-- Right: edit form -->
+      <VBox styleClass="card" spacing="14" HBox.hgrow="ALWAYS">
+        <Label text="Edit Profile" styleClass="section-title"/>
+
+        <Label text="Name" styleClass="caption"/>
+        <TextField fx:id="editNameField" promptText="Full name" maxWidth="Infinity"/>
+
+        <Label text="Sport / Discipline" styleClass="caption"/>
+        <TextField fx:id="editSportField" promptText="e.g. Football" maxWidth="Infinity"/>
+
+        <HBox spacing="12">
+          <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label text="Height (cm)" styleClass="caption"/>
+            <TextField fx:id="editHeightField" promptText="175"/>
+          </VBox>
+          <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label text="Weight (kg)" styleClass="caption"/>
+            <TextField fx:id="editWeightField" promptText="70.0"/>
+          </VBox>
+        </HBox>
+
+        <Separator/>
+        <Label text="Change Password (leave blank to keep current)" styleClass="caption"/>
+        <PasswordField fx:id="editPasswordField" promptText="New password" maxWidth="Infinity"/>
+        <PasswordField fx:id="editConfirmField"  promptText="Confirm new password" maxWidth="Infinity"/>
+
+        <Label fx:id="editErrorLabel"   styleClass="error-label"   visible="false" managed="false"/>
+        <Label fx:id="editSuccessLabel" styleClass="success-label" visible="false" managed="false"/>
+
+        <Button text="Save Changes" onAction="#handleSaveProfile"
+                styleClass="btn-primary" maxWidth="Infinity"/>
+      </VBox>
+    </HBox>
+  </VBox>
+</ScrollPane>

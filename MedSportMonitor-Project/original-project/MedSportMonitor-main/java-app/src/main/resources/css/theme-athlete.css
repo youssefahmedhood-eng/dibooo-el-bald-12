@@ -1,0 +1,37 @@
+/* MedSport Monitor — Athlete theme (Phase I enhanced) */
+.root {
+    -theme-accent:       #0A84FF;
+    -theme-accent-hover: #409CFF;
+    -theme-accent-dim:   rgba(10,132,255,0.16);
+    -theme-accent-glow:  rgba(10,132,255,0.40);
+}
+.login-bg {
+    -fx-background-color:
+        radial-gradient(focus-angle 45deg, focus-distance 50%, center 30% 40%,
+            rgba(10,132,255,0.22) 0%, transparent 70%),
+        radial-gradient(focus-angle 200deg, focus-distance 60%, center 75% 60%,
+            rgba(64,156,255,0.10) 0%, transparent 60%),
+        #0d1117;
+}
+/* Accent glow on primary button */
+.btn-primary {
+    -fx-effect: dropshadow(gaussian, rgba(10,132,255,0.45), 10, 0.5, 0, 2);
+}
+.btn-primary:hover {
+    -fx-effect: dropshadow(gaussian, rgba(10,132,255,0.65), 18, 0.55, 0, 3);
+}
+/* Nav active state */
+.nav-btn.active {
+    -fx-background-color: rgba(10,132,255,0.14);
+    -fx-text-fill: #0A84FF;
+    -fx-border-color: #0A84FF;
+    -fx-border-width: 0 0 0 2.5;
+}
+/* Metric card accent top */
+.metric-card {
+    -fx-border-color: rgba(10,132,255,0.18) rgba(48,54,61,0.7) rgba(48,54,61,0.7) rgba(48,54,61,0.7);
+}
+.metric-card:hover {
+    -fx-border-color: rgba(10,132,255,0.55) rgba(48,54,61,0.7) rgba(48,54,61,0.7) rgba(48,54,61,0.7);
+    -fx-effect: dropshadow(gaussian, rgba(10,132,255,0.30), 20, 0, 0, 0);
+}

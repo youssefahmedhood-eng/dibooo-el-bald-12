@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<ScrollPane fitToWidth="true" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.medsport.controllers.coach.ComparisonController"
+            style="-fx-background-color:#0d1117;">
+  <VBox spacing="20" style="-fx-padding:24; -fx-background-color:#0d1117;">
+
+    <Label text="Athlete Comparison" style="-fx-font-size:22px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+
+    <!-- Athlete pickers -->
+    <HBox spacing="24" alignment="CENTER_LEFT">
+      <VBox spacing="6">
+        <Label text="Athlete 1 (Blue)" style="-fx-text-fill:#0A84FF;-fx-font-size:13px;-fx-font-weight:bold;"/>
+        <ComboBox fx:id="athlete1Combo" prefWidth="200" onAction="#handleAthleteSelected"/>
+      </VBox>
+      <VBox spacing="6">
+        <Label text="Athlete 2 (Green)" style="-fx-text-fill:#00C853;-fx-font-size:13px;-fx-font-weight:bold;"/>
+        <ComboBox fx:id="athlete2Combo" prefWidth="200" onAction="#handleAthleteSelected"/>
+      </VBox>
+    </HBox>
+
+    <!-- Radar overlay -->
+    <HBox spacing="32" alignment="TOP_LEFT">
+      <Canvas fx:id="radarCanvas" width="400" height="380"/>
+      <VBox spacing="16" VBox.vgrow="ALWAYS">
+        <!-- Athlete 1 live stats -->
+        <VBox styleClass="glass-card-sm" spacing="8" style="-fx-padding:16;-fx-pref-width:200;">
+          <Label text="Athlete 1" style="-fx-text-fill:#0A84FF;-fx-font-weight:bold;-fx-font-size:14px;"/>
+          <HBox spacing="8">
+            <Label text="HR:" style="-fx-text-fill:#8b949e;-fx-min-width:50;"/>
+            <Label fx:id="a1HrLabel" text="— bpm" style="-fx-text-fill:#e6edf3;-fx-font-weight:bold;"/>
+          </HBox>
+          <HBox spacing="8">
+            <Label text="SpO₂:" style="-fx-text-fill:#8b949e;-fx-min-width:50;"/>
+            <Label fx:id="a1Spo2Label" text="— %" style="-fx-text-fill:#e6edf3;-fx-font-weight:bold;"/>
+          </HBox>
+        </VBox>
+        <!-- Athlete 2 live stats -->
+        <VBox styleClass="glass-card-sm" spacing="8" style="-fx-padding:16;-fx-pref-width:200;">
+          <Label text="Athlete 2" style="-fx-text-fill:#00C853;-fx-font-weight:bold;-fx-font-size:14px;"/>
+          <HBox spacing="8">
+            <Label text="HR:" style="-fx-text-fill:#8b949e;-fx-min-width:50;"/>
+            <Label fx:id="a2HrLabel" text="— bpm" style="-fx-text-fill:#e6edf3;-fx-font-weight:bold;"/>
+          </HBox>
+          <HBox spacing="8">
+            <Label text="SpO₂:" style="-fx-text-fill:#8b949e;-fx-min-width:50;"/>
+            <Label fx:id="a2Spo2Label" text="— %" style="-fx-text-fill:#e6edf3;-fx-font-weight:bold;"/>
+          </HBox>
+        </VBox>
+      </VBox>
+    </HBox>
+
+  </VBox>
+</ScrollPane>

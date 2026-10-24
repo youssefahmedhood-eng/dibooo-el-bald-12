@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<SplitPane dividerPositions="0.38" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.medsport.controllers.medical.HistoryController"
+           style="-fx-background-color:#0d1117; -fx-padding:24;">
+
+  <!-- LEFT: athlete selector + notes list + new note form -->
+  <VBox spacing="14" style="-fx-background-color:#0d1117; -fx-padding:0 12 0 0;">
+    <Label text="SOAP Notes" style="-fx-font-size:20px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+
+    <HBox spacing="8" alignment="CENTER_LEFT">
+      <Label text="Athlete:" style="-fx-text-fill:#8b949e;-fx-font-size:13px;"/>
+      <ComboBox fx:id="athleteCombo" prefWidth="180"/>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Button text="+ New Note" onAction="#handleNewNote"
+              styleClass="btn-primary" style="-fx-padding:6 14 6 14;"/>
+    </HBox>
+
+    <Label fx:id="noNotesLabel" text="No notes for this athlete."
+           style="-fx-text-fill:#8b949e;-fx-font-size:13px;" visible="false" managed="false"/>
+    <ListView fx:id="notesList" VBox.vgrow="ALWAYS" prefHeight="320"
+              style="-fx-background-color:#161b22; -fx-border-color:#21262d; -fx-border-radius:8; -fx-background-radius:8;"/>
+
+    <!-- New note form (hidden by default) -->
+    <VBox fx:id="newNotePane" spacing="12" styleClass="glass-card" style="-fx-padding:16;"
+          visible="false" managed="false">
+      <Label text="New SOAP Note" style="-fx-font-size:13px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+      <ComboBox fx:id="newNoteAthleteCombo" prefWidth="200"/>
+      <Label text="Subjective" style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+      <TextArea fx:id="newSubjArea" prefHeight="60" promptText="Patient's complaints and history…"
+                wrapText="true" style="-fx-font-size:12px;"/>
+      <Label text="Objective" style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+      <TextArea fx:id="newObjArea" prefHeight="60" promptText="Measurable findings…"
+                wrapText="true" style="-fx-font-size:12px;"/>
+      <Label text="Assessment" style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+      <TextArea fx:id="newAssessArea" prefHeight="60" promptText="Diagnosis / clinical impression…"
+                wrapText="true" style="-fx-font-size:12px;"/>
+      <Label text="Plan" style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+      <TextArea fx:id="newPlanArea" prefHeight="60" promptText="Treatment plan…"
+                wrapText="true" style="-fx-font-size:12px;"/>
+      <CheckBox fx:id="privateCheck" text="Private (only visible to medical staff)" selected="true"
+                style="-fx-text-fill:#8b949e;"/>
+      <HBox spacing="10">
+        <Button text="Save Note" onAction="#handleSaveNote" styleClass="btn-primary" style="-fx-padding:6 18 6 18;"/>
+        <Button text="Cancel"    onAction="#handleCancelNote" styleClass="btn-ghost"  style="-fx-padding:6 14 6 14;"/>
+      </HBox>
+      <Label fx:id="saveStatusLabel" text="" visible="false" managed="false"
+             style="-fx-font-size:12px;"/>
+    </VBox>
+  </VBox>
+
+  <!-- RIGHT: note detail -->
+  <VBox fx:id="detailPane" spacing="14" style="-fx-background-color:#0d1117; -fx-padding:0 0 0 12;"
+        visible="false" managed="false">
+    <HBox spacing="20" alignment="CENTER_LEFT">
+      <Label fx:id="noteDateLabel" text="—" style="-fx-font-size:16px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+      <Label text="Dr." style="-fx-text-fill:#8b949e;-fx-font-size:13px;"/>
+      <Label fx:id="noteDoctorLabel" text="—" style="-fx-text-fill:#8b949e;-fx-font-size:13px;"/>
+    </HBox>
+    <Label text="Subjective" style="-fx-text-fill:#D32F2F;-fx-font-size:12px;-fx-font-weight:bold;"/>
+    <TextArea fx:id="subjArea"   prefHeight="80" editable="false" wrapText="true"/>
+    <Label text="Objective"  style="-fx-text-fill:#D32F2F;-fx-font-size:12px;-fx-font-weight:bold;"/>
+    <TextArea fx:id="objArea"    prefHeight="80" editable="false" wrapText="true"/>
+    <Label text="Assessment" style="-fx-text-fill:#D32F2F;-fx-font-size:12px;-fx-font-weight:bold;"/>
+    <TextArea fx:id="assessArea" prefHeight="80" editable="false" wrapText="true"/>
+    <Label text="Plan"       style="-fx-text-fill:#D32F2F;-fx-font-size:12px;-fx-font-weight:bold;"/>
+    <TextArea fx:id="planArea"   prefHeight="80" editable="false" wrapText="true"/>
+  </VBox>
+
+</SplitPane>

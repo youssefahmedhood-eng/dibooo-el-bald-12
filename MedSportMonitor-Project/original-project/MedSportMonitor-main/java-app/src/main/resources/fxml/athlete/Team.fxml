@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.medsport.controllers.athlete.TeamController"
+            style="-fx-background-color:#0d1117; -fx-padding:24 32;">
+  <top>
+    <VBox spacing="4">
+      <BorderPane.margin><Insets bottom="16"/></BorderPane.margin>
+      <HBox alignment="CENTER_LEFT" spacing="12">
+        <Label text="Team Chat" styleClass="page-title" style="-fx-padding:0;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="teamCodeLabel"  text="" styleClass="tag"/>
+        <Label fx:id="memberCountLabel" text="" styleClass="caption"/>
+      </HBox>
+      <Label fx:id="teamNameLabel" text="" styleClass="subtitle"/>
+    </VBox>
+  </top>
+
+  <center>
+    <!-- No team placeholder -->
+    <Label fx:id="noTeamPane" text="Join a team to access the team chat."
+           styleClass="subtitle" alignment="CENTER"
+           style="-fx-padding:60; -fx-text-fill:#484f58;"
+           visible="false" managed="false"/>
+
+    <!-- Chat area -->
+    <VBox spacing="0">
+      <ScrollPane fx:id="chatScrollPane" VBox.vgrow="ALWAYS" fitToWidth="true"
+                  hbarPolicy="NEVER"
+                  style="-fx-background:transparent; -fx-background-color:transparent;
+                         -fx-border-color:#21262d; -fx-border-width:1 0 1 0;">
+        <VBox fx:id="chatMessagesBox" spacing="4" style="-fx-padding:12 0;"/>
+      </ScrollPane>
+    </VBox>
+  </center>
+
+  <bottom>
+    <HBox spacing="10" style="-fx-padding:12 0 0 0;" alignment="CENTER">
+      <TextField fx:id="messageField" promptText="Type a message…"
+                 HBox.hgrow="ALWAYS" styleClass="text-field"/>
+      <Button fx:id="sendButton" text="Send" onAction="#handleSend"
+              styleClass="btn-primary" minWidth="80"/>
+    </HBox>
+  </bottom>
+</BorderPane>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.medsport.controllers.shared.MainLayoutController"
+            fx:id="rootPane"
+            prefWidth="1280" prefHeight="800"
+            styleClass="view-root">
+
+    <!-- LEFT: Sidebar -->
+    <left>
+        <VBox fx:id="sidebar" prefWidth="220" minWidth="64" maxWidth="220"
+              styleClass="sidebar" spacing="0">
+
+            <!-- Sidebar header: toggle + logo -->
+            <HBox styleClass="sidebar-header" alignment="CENTER_LEFT" spacing="10">
+                <Button fx:id="sidebarToggle" text="&#x2630;" styleClass="sidebar-toggle"
+                        onAction="#toggleSidebar"/>
+                <Label fx:id="logoLabel" text="MedSport" styleClass="sidebar-logo"/>
+            </HBox>
+
+            <!-- User info -->
+            <VBox spacing="4" style="-fx-padding: 16 16 12 16;">
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label fx:id="avatarLabel" text="U" styleClass="user-avatar"/>
+                    <VBox spacing="1">
+                        <Label fx:id="userNameLabel" text="User" styleClass="user-name"/>
+                        <Label fx:id="userRoleLabel" text="Role" styleClass="user-role"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <Separator/>
+
+            <!-- Scrollable nav -->
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                        style="-fx-background:transparent; -fx-background-color:transparent;"
+                        hbarPolicy="NEVER" vbarPolicy="NEVER">
+                <VBox spacing="2" style="-fx-padding: 8 8 8 8;">
+
+                    <!-- Common -->
+                    <Label text="MAIN" styleClass="nav-section-label" fx:id="sectionMain"/>
+                    <Button fx:id="navDashboard" text="  Dashboard" onAction="#showDashboard"
+                            styleClass="nav-btn" maxWidth="Infinity"/>
+
+                    <!-- Athlete nav -->
+                    <Button fx:id="navSessions" text="  Sessions" onAction="#showSessions"
+                            styleClass="nav-btn" maxWidth="Infinity"/>
+                    <Button fx:id="navPerformance" text="  Performance" onAction="#showPerformance"
+                            styleClass="nav-btn" maxWidth="Infinity"/>
+                    <Button fx:id="navTeam" text="  Team" onAction="#showTeam"
+                            styleClass="nav-btn" maxWidth="Infinity"/>
+                    <Button fx:id="navProfile" text="  Profile" onAction="#showProfile"
+                            styleClass="nav-btn" maxWidth="Infinity"/>
+
+                    <!-- Coach nav -->
+                    <Button fx:id="navCoachSession" text="  Session Ctrl" onAction="#showCoachSession"
+                            styleClass="nav-btn" maxWidth="Infinity"/>
+                    <Button fx:id="navComparison" text="  Comparison" onAction="#showComparison"
+                            styleClass="nav-btn" maxWidth="Infinity"/>
+                    <Button fx:id="navTeamMgmt" text="  Team Mgmt" onAction="#showTeamMgmt"
+                            styleClass="nav-btn" maxWidth="Infinity"/>
+                    <Button fx:id="navSimulator" text="  Simulator" onAction="#showSimulator"
+                            styleClass="nav-btn" maxWidth="Infinity"/>
+
+                    <!-- Medical nav -->
+                    <Button fx:id="navHistory" text="  History" onAction="#showHistory"
+                            styleClass="nav-btn" maxWidth="Infinity"/>
+                    <Button fx:id="navRestrictions" text="  Restrictions" onAction="#showRestrictions"
+                            styleClass="nav-btn" maxWidth="Infinity"/>
+                    <Button fx:id="navRisk" text="  Risk" onAction="#showRisk"
+                            styleClass="nav-btn" maxWidth="Infinity"/>
+                    <Button fx:id="navReports" text="  Reports" onAction="#showReports"
+                            styleClass="nav-btn" maxWidth="Infinity"/>
+                </VBox>
+            </ScrollPane>
+
+            <!-- Footer: chat badge + logout -->
+            <VBox spacing="4" style="-fx-padding: 8 8 12 8;">
+                <Separator/>
+                <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-padding: 6 12;">
+                    <Label text="  Chat" styleClass="nav-btn" style="-fx-text-fill:#8b949e;"/>
+                    <Label fx:id="chatBadge" text="0" styleClass="chat-badge"
+                           visible="false" managed="false"/>
+                </HBox>
+                <Button fx:id="logoutButton" text="  Log out" onAction="#handleLogout"
+                        styleClass="btn-danger" maxWidth="Infinity"
+                        style="-fx-margin: 0 8;"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- CENTER: Content area -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area" BorderPane.alignment="CENTER"/>
+    </center>
+
+</BorderPane>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<ScrollPane fitToWidth="true" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.medsport.controllers.medical.DashboardController"
+            style="-fx-background-color:#0d1117;">
+  <VBox spacing="20" style="-fx-padding:24; -fx-background-color:#0d1117;">
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="16">
+      <Label text="Clinical Dashboard" style="-fx-font-size:22px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Label fx:id="mqttStatusLabel" text="● DEMO"
+             style="-fx-text-fill:#d29922;-fx-font-weight:bold;"/>
+      <Label fx:id="lastUpdateLabel" text="" style="-fx-text-fill:#8b949e;-fx-font-size:11px;"/>
+    </HBox>
+
+    <!-- Active alerts -->
+    <VBox styleClass="glass-card" spacing="10" style="-fx-padding:16;">
+      <HBox alignment="CENTER_LEFT" spacing="12">
+        <Label text="Active Alerts" style="-fx-font-size:14px;-fx-font-weight:bold;-fx-text-fill:#f85149;"/>
+        <Label fx:id="alertCountLabel" text="0 active"
+               style="-fx-text-fill:#8b949e;-fx-font-size:12px;"/>
+      </HBox>
+      <VBox fx:id="criticalAlertFeed" spacing="6"/>
+    </VBox>
+
+    <!-- Athlete status -->
+    <Label text="Athlete Status" style="-fx-font-size:14px;-fx-font-weight:bold;-fx-text-fill:#8b949e;"/>
+    <FlowPane fx:id="athleteStatusGrid" hgap="12" vgap="12"
+              style="-fx-background-color:transparent;"/>
+
+    <!-- Active restrictions -->
+    <VBox styleClass="glass-card" spacing="10" style="-fx-padding:16;">
+      <Label text="Active Restrictions" style="-fx-font-size:14px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+      <VBox fx:id="restrictionFeed" spacing="6"/>
+    </VBox>
+
+  </VBox>
+</ScrollPane>

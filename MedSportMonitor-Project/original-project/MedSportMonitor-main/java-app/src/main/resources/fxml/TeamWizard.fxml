@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<StackPane xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.medsport.controllers.shared.TeamWizardController"
+           prefWidth="1100" prefHeight="720"
+           styleClass="login-root">
+    <Pane styleClass="login-bg" maxWidth="Infinity" maxHeight="Infinity"/>
+    <VBox styleClass="login-card" spacing="0" alignment="TOP_CENTER"
+          maxWidth="520" maxHeight="680">
+
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <VBox.margin><Insets bottom="28"/></VBox.margin>
+            <Label text="&#x1F3C6;" style="-fx-font-size:28px;"/>
+            <VBox spacing="2">
+                <Label text="Create Your Team" styleClass="step-title"/>
+                <Label fx:id="stepLabel" text="Step 1 of 4" styleClass="step-label"/>
+            </VBox>
+        </HBox>
+
+        <!-- Step dots -->
+        <HBox alignment="CENTER" spacing="8">
+            <VBox.margin><Insets bottom="28"/></VBox.margin>
+            <Label fx:id="wdot1" text="1" styleClass="wizard-step-active"/>
+            <Pane fx:id="wconn1" styleClass="step-connector" style="-fx-pref-width:56px;"/>
+            <Label fx:id="wdot2" text="2" styleClass="wizard-step-pending"/>
+            <Pane fx:id="wconn2" styleClass="step-connector" style="-fx-pref-width:56px;"/>
+            <Label fx:id="wdot3" text="3" styleClass="wizard-step-pending"/>
+            <Pane fx:id="wconn3" styleClass="step-connector" style="-fx-pref-width:56px;"/>
+            <Label fx:id="wdot4" text="4" styleClass="wizard-step-pending"/>
+        </HBox>
+
+        <!-- Step 1: Team name + sport -->
+        <VBox fx:id="wStep1" spacing="12" VBox.vgrow="ALWAYS">
+            <Label text="Team Identity" styleClass="section-title"/>
+            <Label text="Give your team a name and choose your sport." styleClass="caption"/>
+            <TextField fx:id="teamNameField" promptText="Team name (e.g. Atletico Biomedico)" maxWidth="Infinity"/>
+            <ComboBox fx:id="sportCombo" promptText="Select sport" maxWidth="Infinity"/>
+            <ComboBox fx:id="categoryCombo" promptText="Category (e.g. Senior, U18...)" maxWidth="Infinity"/>
+        </VBox>
+
+        <!-- Step 2: Clinical thresholds -->
+        <VBox fx:id="wStep2" spacing="12" VBox.vgrow="ALWAYS" visible="false" managed="false">
+            <Label text="Clinical Thresholds" styleClass="section-title"/>
+            <Label text="Alert limits for your team (can be changed later)." styleClass="caption"/>
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="HR alert (%HRmax)" styleClass="subtitle" minWidth="160"/>
+                <Slider fx:id="hrThresholdSlider" min="80" max="100" value="95"
+                        showTickLabels="true" showTickMarks="true"
+                        majorTickUnit="5" HBox.hgrow="ALWAYS"/>
+                <Label fx:id="hrThresholdLabel" text="95%" styleClass="value-unit" minWidth="40"/>
+            </HBox>
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="SpO2 alert (%)" styleClass="subtitle" minWidth="160"/>
+                <Slider fx:id="spo2ThresholdSlider" min="85" max="98" value="93"
+                        showTickLabels="true" showTickMarks="true"
+                        majorTickUnit="3" HBox.hgrow="ALWAYS"/>
+                <Label fx:id="spo2ThresholdLabel" text="93%" styleClass="value-unit" minWidth="40"/>
+            </HBox>
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="Weekly load limit (AU)" styleClass="subtitle" minWidth="160"/>
+                <Slider fx:id="loadSlider" min="400" max="2000" value="1000"
+                        showTickLabels="true" showTickMarks="true"
+                        majorTickUnit="400" HBox.hgrow="ALWAYS"/>
+                <Label fx:id="loadLabel" text="1000" styleClass="value-unit" minWidth="50"/>
+            </HBox>
+        </VBox>
+
+        <!-- Step 3: Create team & get join code -->
+        <VBox fx:id="wStep3" spacing="16" VBox.vgrow="ALWAYS" visible="false" managed="false"
+              alignment="CENTER">
+            <Label text="Team Created!" styleClass="section-title"/>
+            <Label text="Share this code with your athletes and medical staff:" styleClass="caption"
+                   wrapText="true" textAlignment="CENTER"/>
+            <VBox alignment="CENTER" spacing="8">
+                <Label fx:id="joinCodeDisplay" text="------" styleClass="join-code-field"
+                       style="-fx-font-size:36px; -fx-letter-spacing:8;"/>
+                <Button fx:id="copyCodeButton" text="Copy code" onAction="#copyJoinCode"
+                        styleClass="btn-secondary"/>
+            </VBox>
+            <Label text="Members can join by entering this 6-character code in the app."
+                   styleClass="caption" wrapText="true" textAlignment="CENTER"/>
+        </VBox>
+
+        <!-- Step 4: Invite or skip -->
+        <VBox fx:id="wStep4" spacing="12" VBox.vgrow="ALWAYS" visible="false" managed="false">
+            <Label text="You're all set!" styleClass="section-title"/>
+            <Label text="Your team is ready. Go to your dashboard or invite members now."
+                   styleClass="caption" wrapText="true"/>
+            <HBox spacing="12">
+                <VBox styleClass="card" spacing="6" HBox.hgrow="ALWAYS" alignment="CENTER">
+                    <Label text="&#x1F517;" style="-fx-font-size:24px;"/>
+                    <Label text="Join code ready" styleClass="subtitle"/>
+                    <Label fx:id="joinCodeSmall" text="" styleClass="badge-ok" alignment="CENTER"/>
+                </VBox>
+                <VBox styleClass="card" spacing="6" HBox.hgrow="ALWAYS" alignment="CENTER">
+                    <Label text="&#x1F4CA;" style="-fx-font-size:24px;"/>
+                    <Label text="Dashboard" styleClass="subtitle"/>
+                    <Label text="Start monitoring" styleClass="caption"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <!-- Error -->
+        <Label fx:id="errorLabel" styleClass="error-label" wrapText="true"
+               maxWidth="Infinity" visible="false" managed="false">
+            <VBox.margin><Insets top="8"/></VBox.margin>
+        </Label>
+        <ProgressIndicator fx:id="spinner" visible="false" managed="false" maxWidth="28" maxHeight="28">
+            <VBox.margin><Insets top="4"/></VBox.margin>
+        </ProgressIndicator>
+
+        <!-- Nav buttons -->
+        <HBox spacing="12" alignment="CENTER_RIGHT">
+            <VBox.margin><Insets top="20"/></VBox.margin>
+            <Button fx:id="backButton" text="Back" onAction="#handleBack"
+                    styleClass="btn-secondary" minWidth="110"/>
+            <Button fx:id="nextButton" text="Next" onAction="#handleNext"
+                    styleClass="btn-primary" minWidth="160"/>
+        </HBox>
+    </VBox>
+</StackPane>

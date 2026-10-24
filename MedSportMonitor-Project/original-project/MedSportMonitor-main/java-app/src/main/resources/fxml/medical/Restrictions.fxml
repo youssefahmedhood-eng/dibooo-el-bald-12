@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<ScrollPane fitToWidth="true" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.medsport.controllers.medical.RestrictionsController"
+            style="-fx-background-color:#0d1117;">
+  <VBox spacing="20" style="-fx-padding:24; -fx-background-color:#0d1117;">
+
+    <Label text="Medical Restrictions" style="-fx-font-size:22px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+
+    <!-- New restriction form -->
+    <VBox styleClass="glass-card" spacing="14" style="-fx-padding:20;">
+      <Label text="Add Restriction" style="-fx-font-size:14px;-fx-font-weight:bold;-fx-text-fill:#e6edf3;"/>
+
+      <GridPane hgap="16" vgap="12">
+        <Label text="Athlete" GridPane.rowIndex="0" GridPane.columnIndex="0"
+               style="-fx-text-fill:#8b949e;-fx-font-size:13px;"/>
+        <ComboBox fx:id="athleteCombo" prefWidth="200"
+                  GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Type" GridPane.rowIndex="1" GridPane.columnIndex="0"
+               style="-fx-text-fill:#8b949e;-fx-font-size:13px;"/>
+        <ComboBox fx:id="typeCombo" prefWidth="200"
+                  GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label fx:id="hrLimitRow" text="HR Limit (bpm)" GridPane.rowIndex="2" GridPane.columnIndex="0"
+               style="-fx-text-fill:#8b949e;-fx-font-size:13px;" visible="false" managed="false"/>
+        <TextField fx:id="hrLimitField" prefWidth="120" promptText="e.g. 150"
+                   GridPane.rowIndex="2" GridPane.columnIndex="1" visible="false" managed="false"/>
+
+        <Label text="Return-to-Play Date" GridPane.rowIndex="3" GridPane.columnIndex="0"
+               style="-fx-text-fill:#8b949e;-fx-font-size:13px;"/>
+        <DatePicker fx:id="returnDatePicker" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="Clinical notes" GridPane.rowIndex="4" GridPane.columnIndex="0"
+               style="-fx-text-fill:#8b949e;-fx-font-size:13px;"/>
+        <TextArea fx:id="descriptionArea" prefHeight="80" wrapText="true"
+                  GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="300"/>
+      </GridPane>
+
+      <HBox spacing="12" alignment="CENTER_LEFT">
+        <Button fx:id="addBtn" text="Add Restriction" onAction="#handleAdd"
+                styleClass="btn-danger" style="-fx-padding:8 24 8 24;"/>
+        <Label fx:id="saveStatusLabel" text="" visible="false" managed="false"
+               style="-fx-font-size:12px;"/>
+      </HBox>
+    </VBox>
+
+    <!-- Active restrictions list -->
+    <Label text="Active Restrictions" style="-fx-font-size:14px;-fx-font-weight:bold;-fx-text-fill:#8b949e;"/>
+    <Label fx:id="noRestrictionsLabel" text="No active restrictions."
+           style="-fx-text-fill:#8b949e;-fx-font-size:13px;" visible="false" managed="false"/>
+    <VBox fx:id="restrictionList" spacing="8"/>
+
+  </VBox>
+</ScrollPane>

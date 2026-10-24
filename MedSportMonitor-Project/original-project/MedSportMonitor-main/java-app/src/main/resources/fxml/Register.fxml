@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<StackPane xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.medsport.auth.RegisterController"
+           prefWidth="1100" prefHeight="720"
+           styleClass="login-root">
+    <Pane styleClass="login-bg" maxWidth="Infinity" maxHeight="Infinity"/>
+    <VBox styleClass="login-card" spacing="0" alignment="TOP_CENTER"
+          maxWidth="480" maxHeight="660">
+
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <VBox.margin><Insets bottom="28"/></VBox.margin>
+            <Label text="+" style="-fx-font-size:24px; -fx-text-fill:-theme-accent; -fx-font-weight:bold;"/>
+            <VBox spacing="2">
+                <Label text="Create Account" styleClass="step-title"/>
+                <Label fx:id="stepLabel" text="Step 1 of 3" styleClass="step-label"/>
+            </VBox>
+        </HBox>
+
+        <!-- Step dots -->
+        <HBox alignment="CENTER" spacing="8">
+            <VBox.margin><Insets bottom="28"/></VBox.margin>
+            <Pane fx:id="dot1" styleClass="step-dot,step-dot-active" style="-fx-pref-width:12px;-fx-pref-height:12px;"/>
+            <Pane styleClass="step-connector" fx:id="conn1"/>
+            <Pane fx:id="dot2" styleClass="step-dot,step-dot-inactive"/>
+            <Pane styleClass="step-connector" fx:id="conn2"/>
+            <Pane fx:id="dot3" styleClass="step-dot,step-dot-inactive"/>
+        </HBox>
+
+        <!-- Step 1: Personal info -->
+        <VBox fx:id="step1Pane" spacing="12" VBox.vgrow="ALWAYS">
+            <Label text="Personal Information" styleClass="section-title"/>
+            <TextField fx:id="nameField" promptText="Full name" maxWidth="Infinity"/>
+            <TextField fx:id="emailField" promptText="Email address" maxWidth="Infinity"/>
+            <PasswordField fx:id="passwordField" promptText="Password (min. 8 chars)" maxWidth="Infinity"/>
+            <PasswordField fx:id="confirmPasswordField" promptText="Confirm password" maxWidth="Infinity"/>
+        </VBox>
+
+        <!-- Step 2: Role selection (role cards) -->
+        <VBox fx:id="step2Pane" spacing="16" VBox.vgrow="ALWAYS" visible="false" managed="false">
+            <Label text="Select Your Role" styleClass="section-title"/>
+            <Label text="Choose the role that best describes your position." styleClass="caption"/>
+            <HBox spacing="16" alignment="CENTER">
+                <VBox fx:id="athleteCard" styleClass="role-card" spacing="8" onMouseClicked="#selectAthlete">
+                    <Label text="&#x1F3C3;" styleClass="role-icon"/>
+                    <Label text="Athlete" styleClass="role-name"/>
+                    <Label text="Track your performance and health metrics" styleClass="role-desc" maxWidth="120"/>
+                </VBox>
+                <VBox fx:id="coachCard" styleClass="role-card" spacing="8" onMouseClicked="#selectCoach">
+                    <Label text="&#x1F4CB;" styleClass="role-icon"/>
+                    <Label text="Coach" styleClass="role-name"/>
+                    <Label text="Monitor your team and control sessions" styleClass="role-desc" maxWidth="120"/>
+                </VBox>
+                <VBox fx:id="medicalCard" styleClass="role-card" spacing="8" onMouseClicked="#selectMedical">
+                    <Label text="&#x2695;" styleClass="role-icon"/>
+                    <Label text="Medical" styleClass="role-name"/>
+                    <Label text="Clinical oversight and health management" styleClass="role-desc" maxWidth="120"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <!-- Step 3: Role-specific fields -->
+        <VBox fx:id="step3Pane" spacing="12" VBox.vgrow="ALWAYS" visible="false" managed="false">
+            <Label text="Profile Details" styleClass="section-title"/>
+            <!-- Athlete fields -->
+            <VBox fx:id="athleteFields" spacing="10" visible="false" managed="false">
+                <HBox spacing="12">
+                    <DatePicker fx:id="birthDatePicker" promptText="Date of birth" HBox.hgrow="ALWAYS"/>
+                    <ComboBox fx:id="sexCombo" promptText="Sex" HBox.hgrow="ALWAYS"/>
+                </HBox>
+                <TextField fx:id="sportField" promptText="Sport / discipline" maxWidth="Infinity"/>
+                <HBox spacing="12">
+                    <TextField fx:id="heightField" promptText="Height (cm)" HBox.hgrow="ALWAYS"/>
+                    <TextField fx:id="weightField" promptText="Weight (kg)" HBox.hgrow="ALWAYS"/>
+                </HBox>
+                <Label fx:id="hrMaxLabel" text="" styleClass="caption"
+                       style="-fx-text-fill:-theme-accent;"/>
+            </VBox>
+            <!-- Coach fields -->
+            <VBox fx:id="coachFields" spacing="10" visible="false" managed="false">
+                <TextField fx:id="sportField" promptText="Sport / discipline" maxWidth="Infinity"/>
+                <TextField fx:id="institutionField" promptText="Club / institution" maxWidth="Infinity"/>
+            </VBox>
+            <!-- Medical fields -->
+            <VBox fx:id="medicalFields" spacing="10" visible="false" managed="false">
+                <TextField fx:id="specialtyField" promptText="Medical specialty" maxWidth="Infinity"/>
+                <TextField fx:id="licenseField" promptText="License / registration number" maxWidth="Infinity"/>
+                <TextField fx:id="institutionField" promptText="Hospital / clinic / institution" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+
+        <!-- Error / spinner -->
+        <Label fx:id="errorLabel" styleClass="error-label" wrapText="true"
+               maxWidth="Infinity" visible="false" managed="false">
+            <VBox.margin><Insets top="8"/></VBox.margin>
+        </Label>
+        <ProgressIndicator fx:id="spinner" visible="false" managed="false"
+                           maxWidth="28" maxHeight="28">
+            <VBox.margin><Insets top="4"/></VBox.margin>
+        </ProgressIndicator>
+
+        <!-- Navigation buttons -->
+        <HBox spacing="12" alignment="CENTER_RIGHT">
+            <VBox.margin><Insets top="20"/></VBox.margin>
+            <Button fx:id="backButton" text="Back" onAction="#handleBack" styleClass="btn-secondary"
+                    minWidth="110"/>
+            <Button fx:id="nextButton" text="Next" onAction="#handleNext" styleClass="btn-primary"
+                    minWidth="160"/>
+        </HBox>
+    </VBox>
+</StackPane>
